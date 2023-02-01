@@ -1,0 +1,20 @@
+.nav {
+  &__container {
+    background-color: rgb(121, 119, 119);
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+  }
+  &__logo {
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #fff;
+  }
+  &__avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: tomato;
+  }
+}
