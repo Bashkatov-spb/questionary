@@ -1,26 +1,30 @@
-'use strict';
 const {
-  Model
+  Model,
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
-    static associate({Attempt}) {
-     this.hasMany(Attempt,{foreignKey:'userId'})
+    static associate({ Attempt }) {
+      this.hasMany(Attempt, { foreignKey: 'userId' });
     }
   }
   User.init({
     name: {
       allowNull: false,
-      type: DataTypes.TEXT
+      type: DataTypes.TEXT,
     },
     email: {
       allowNull: false,
-      unique:true,
-      type: DataTypes.TEXT
+      unique: true,
+      type: DataTypes.TEXT,
     },
     password: {
       allowNull: false,
-      type: DataTypes.TEXT
+      type: DataTypes.TEXT,
+    },
+    avatar: {
+      type: DataTypes.TEXT,
+      defaultValue: '/images/avatars/avatar.png',
     },
   }, {
     sequelize,
