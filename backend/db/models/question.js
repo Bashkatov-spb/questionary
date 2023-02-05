@@ -1,42 +1,27 @@
-'use strict';
 const {
-  Model
+  Model,
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Question extends Model {
-    static associate({Module,Statistic}) {
-      this.belongsTo(Module,{foreignKey:'moduleId'})
-      this.hasMany(Statistic,{foreignKey:'questionId'})
+    static associate({ Module, Statistic, Answer }) {
+      this.belongsTo(Module, { foreignKey: 'moduleId' });
+      this.hasMany(Statistic, { foreignKey: 'questionId' });
+      this.hasMany(Answer, { foreignKey: 'questionId' });
     }
   }
   Question.init({
     moduleId: {
       allowNull: false,
       type: DataTypes.INTEGER,
-      references:{
-        model:'Modules',
-        key:'id'
-      }
+      references: {
+        model: 'Modules',
+        key: 'id',
+      },
     },
-    qustion: {
+    question: {
       allowNull: false,
-      type: DataTypes.TEXT
-    },
-    falseAnswer1: {
-      allowNull: false,
-      type: DataTypes.TEXT
-    },
-    falseAnswer2: {
-      allowNull: false,
-      type: DataTypes.TEXT
-    },
-    falseAnswer3: {
-      allowNull: false,
-      type: DataTypes.TEXT
-    },
-    trueAnswer: {
-      allowNull: false,
-      type: DataTypes.TEXT
+      type: DataTypes.TEXT,
     },
   }, {
     sequelize,
