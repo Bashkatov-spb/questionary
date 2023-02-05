@@ -1,0 +1,16 @@
+.main {
+  &__container {
+    background-color: #fff;
+  }
+}
+
+.swiper-slide {
+  padding: 15px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & img {
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+}

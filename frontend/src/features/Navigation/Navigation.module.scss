@@ -1,20 +1,135 @@
 .nav {
   &__container {
-    background-color: rgb(121, 119, 119);
+    background: linear-gradient(to left, #f46b45, #eea849);
     display: flex;
     justify-content: space-between;
-    padding: 10px;
+    padding: 10px 30px;
+    align-items: center;
+    color: #fff;
+    height: 50px;
   }
   &__logo {
+    display: flex;
+    justify-content: center;
     width: 100px;
-    height: 50px;
+    height: 20px;
     border-radius: 10px;
-    background-color: #fff;
+    background-color: rgba(254, 251, 251, 0.358);
   }
   &__avatar {
     width: 50px;
     height: 50px;
     border-radius: 50%;
     background-color: tomato;
+  }
+  &__button-container {
+    display: none;
+    height: 100%;
+    width: 30px;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  &__menu-list {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    z-index: 2;
+    &--item {
+      padding: 0 1rem;
+      overflow: hidden;
+    }
+    &--link {
+      color: white;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+  }
+  &__menu-button,
+  &__menu-button::before,
+  &__menu-button::after {
+    display: block;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    height: 4px;
+    width: 40px;
+    transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    border-radius: 4px;
+  }
+  &__menu-button::before {
+    content: '';
+    margin-top: -10px;
+  }
+  &__menu-button::after {
+    content: '';
+    margin-top: 10px;
+  }
+}
+
+#nav__menu-toggle {
+  display: none;
+}
+
+#nav__menu-toggle:checked + .nav__button-container .nav__menu-button::before {
+  margin-top: 0px;
+  transform: rotate(405deg);
+}
+
+#nav__menu-toggle:checked + .nav__button-container .nav__menu-button {
+  background: rgba(255, 255, 255, 0);
+}
+
+#nav__menu-toggle:checked + .nav__button-container .nav__menu-button::after {
+  margin-top: 0px;
+  transform: rotate(-405deg);
+}
+
+@media (max-width: 700px) {
+  .nav {
+    &__button-container {
+      display: flex;
+    }
+    &__menu-list {
+      position: absolute;
+      top: 0;
+      margin-top: 70px;
+      left: 0;
+      flex-direction: column;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      &--item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        width: 100%;
+        color: white;
+        background-color: rgb(76, 48, 118);
+        border-radius: 10px;
+      }
+    }
+  }
+
+  #nav__menu-toggle ~ .nav__menu-list li {
+    height: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    transition: height 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  #nav__menu-toggle:checked ~ .nav__menu-list li {
+    border: 3px solid rgb(255, 128, 0);
+    height: 50px;
+    margin-top: 5px;
+    transition: height 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .nav__menu-list > li {
+  }
+  .nav__menu-list > li:not(:last-child) {
+    border-bottom: 1px solid #444;
   }
 }
