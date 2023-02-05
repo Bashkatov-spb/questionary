@@ -1,24 +1,28 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Questions', {
+    await queryInterface.createTable('Answers', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      moduleId: {
+      answer: {
+        allowNull: false,
+        type: Sequelize.TEXT,
+      },
+      status: {
+        allowNull: false,
+        type: Sequelize.BOOLEAN,
+      },
+      questionId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: 'Modules',
+          model: 'Questions',
           key: 'id',
         },
-      },
-      question: {
-        allowNull: false,
-        type: Sequelize.TEXT,
       },
       createdAt: {
         allowNull: false,
@@ -31,6 +35,6 @@ module.exports = {
     });
   },
   async down(queryInterface) {
-    await queryInterface.dropTable('Questions');
+    await queryInterface.dropTable('Answers');
   },
 };
