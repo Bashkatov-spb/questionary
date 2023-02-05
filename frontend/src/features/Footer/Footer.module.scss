@@ -1,0 +1,11 @@
+.footer {
+  &__container {
+    background: linear-gradient(to right, #f46b45, #eea849);
+    color: white;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}

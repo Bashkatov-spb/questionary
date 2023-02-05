@@ -1,0 +1,14 @@
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  background-color: rgb(129, 79, 200);
+}
+
+.app {
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+}
