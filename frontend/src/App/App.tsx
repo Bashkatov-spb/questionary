@@ -14,7 +14,7 @@ function App(): JSX.Element {
       </header>
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/auth" element={<Auth />} />
+        <Route path="/auth/:name" element={<Auth />} />
         <Route path="/questions" element={<Question />} />
       </Routes>
     </div>

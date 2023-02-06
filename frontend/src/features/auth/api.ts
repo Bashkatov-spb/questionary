@@ -9,6 +9,7 @@ export async function postRegistration(action:RegistrationInput):Promise<User> {
     credentials: 'include',
    body: JSON.stringify(action)
   });
+  
   return result.json();
  }
 
