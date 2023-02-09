@@ -26,8 +26,8 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
     .addCase(registrationUser.fulfilled, (state, action) => {
-      if(action.payload.message){
-        state.error=action.payload.message
+      if (action.payload.message) {
+        state.error = action.payload.message;
       }
       state.user = action.payload;
     })
@@ -35,8 +35,8 @@ const authSlice = createSlice({
       state.error = action.error.message;
     })
     .addCase(loginUser.fulfilled, (state, action) => {
-      if(action.payload.message){
-        state.error=action.payload.message
+      if (action.payload.message) {
+        state.error = action.payload.message;
       }
       state.user = action.payload;
     })

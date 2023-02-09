@@ -11,7 +11,7 @@ const login = async (req, res) => {
       let user = await User.findOne({ where: { email } });
       if (user && await bcrypt.compare(password, user.password)) {
         user = {
-          id: user.id, name: user.name, email: user, avatar: user.avatar,
+          id: user.id, name: user.name, email: user.email, avatar: user.avatar,
         };
         req.session.user = user.id;
         res.status(201).json(user);
