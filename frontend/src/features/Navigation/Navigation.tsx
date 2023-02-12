@@ -44,11 +44,19 @@ function Navigation(): JSX.Element {
           </Link>
         </li></>
         :
+        <>
+           <li className={styles['nav__menu-list--item']}>
+          <Link className={styles['nav__menu-list--link']} to="/profile" onClick={() => setCheck((prev) => !prev)}>
+            Профиль
+          </Link>
+        </li>
         <li className={styles['nav__menu-list--item']}>
           <Link className={styles['nav__menu-list--link']} to="/auth/logout" onClick={() => setCheck((prev) => !prev)}>
             Выйти
           </Link>
-        </li>}
+        </li>
+        </>
+        }
       </ul>
     </div>
   );
