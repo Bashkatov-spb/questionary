@@ -8,13 +8,13 @@ const login = async (req, res) => {
 
   try {
     if (email || password) {
-      let user = await User.findOne({ where: { email } });
+      const user = await User.findOne({ where: { email } });
       if (user && await bcrypt.compare(password, user.password)) {
-        user = {
+        const newUser = {
           id: user.id, name: user.name, email: user.email, avatar: user.avatar,
         };
-        req.session.user = user.id;
-        res.status(201).json(user);
+        req.session.userId = newUser.id;
+        res.status(201).json({ user: newUser });
       } else {
         res.status(403).json({ message: 'Ваш email пароль не соответствуют' });
       }

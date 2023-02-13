@@ -9,16 +9,16 @@ const register = async (req, res) => {
   try {
     if (name || email || password || password2) {
       if (password.length > 3 || password2.length > 3) {
-        let user = await User.findOne({ where: { email } });
+        const user = await User.findOne({ where: { email } });
         if (!user) {
           if (password === password2) {
             const hash = await bcrypt.hash(password, 10);
-            const newUser = await User.create({ name, email, password: hash });
-            user = {
+            let newUser = await User.create({ name, email, password: hash });
+            newUser = {
               id: newUser.id, name: newUser.name, email: newUser.email, avatar: newUser.avatar,
             };
-            req.session.user = user.id;
-            res.status(201).json(user);
+            req.session.userId = newUser.id;
+            res.status(201).json({ user: newUser });
           } else {
             res.status(403).json({ message: 'Ваши пароли не совпадают' });
           }

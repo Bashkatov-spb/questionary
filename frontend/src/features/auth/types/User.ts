@@ -1,11 +1,9 @@
-export interface Res { message:string; user:string }
 
 export interface User {
   id: number;
   name: string;
   email: string;
   avatar: string;
-  message?:string;
 }
 export interface LoginInput {
   email: string,
@@ -31,3 +29,7 @@ export interface AuthState {
 export interface AuthMessage {
   message: string,
 }
+ export interface PayloadAuth {
+  user?:User,
+  message?:string
+ }

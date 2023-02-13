@@ -1,6 +1,6 @@
-import { AuthMessage, LoginInput, RegistrationInput, User } from './types/User';
+import { AuthMessage, LoginInput, PayloadAuth, RegistrationInput} from './types/User';
 
-export async function postRegistration(action:RegistrationInput):Promise<User> {
+export async function postRegistration(action:RegistrationInput):Promise<PayloadAuth> {
   const result = await fetch('http://localhost:4000/api/auth/registration', {
     method: 'POST',
     headers: {
@@ -13,7 +13,7 @@ export async function postRegistration(action:RegistrationInput):Promise<User> {
   return result.json();
  }
 
- export async function postLogin(action:LoginInput):Promise<User> {
+ export async function postLogin(action:LoginInput):Promise<PayloadAuth> {
   const result = await fetch('http://localhost:4000/api/auth/login', {
     method: 'POST',
     headers: {
@@ -25,8 +25,16 @@ export async function postRegistration(action:RegistrationInput):Promise<User> {
   return result.json();
  }
 
- export async function getLogout():Promise<AuthMessage> {
+ export async function getLogout():Promise<PayloadAuth> {
   const result = await fetch('http://localhost:4000/api/auth/logout',{
+    method: 'GET',
+    credentials: 'include',
+  });
+  return result.json();
+ }
+
+ export async function getCheckUser():Promise<PayloadAuth> {
+  const result = await fetch('http://localhost:4000/api/auth/checkUser',{
     method: 'GET',
     credentials: 'include',
   });
