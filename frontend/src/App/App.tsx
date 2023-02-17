@@ -6,6 +6,9 @@ import Navigation from '../features/Navigation/Navigation';
 import Auth from '../features/auth/Auth';
 import Question from '../features/questions/Question';
 import Main from '../features/Main/Main';
+import { checkUser } from '../features/auth/authSlice';
+import Profile from '../features/profile/Profile';
+
 import Statistics from '../features/Statistics/Statistics';
 import {
   getAllQuestions,
@@ -22,7 +25,9 @@ function App(): JSX.Element {
     dispatch(getAllModules());
     dispatch(getAllThemes());
     dispatch(getAllAnswers());
+    dispatch(checkUser())
   }, [dispatch]);
+
   return (
     <div className={styles.app__container}>
       <header>
@@ -34,6 +39,7 @@ function App(): JSX.Element {
         <Route path="/modules" element={<Themes />} />
         <Route path="/questions/:id" element={<Question />} />
         <Route path="/statistics" element={<Statistics />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </div>
   );
