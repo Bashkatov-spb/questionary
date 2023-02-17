@@ -2,30 +2,39 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { RootState, useAppDispatch } from '../../store';
-import { initQuestion, nextQuestion, savingStatistics } from './questionsSlice';
+// import { initQuestion, nextQuestion, savingStatistics } from './questionsSlice';
 
 function Question(): JSX.Element {
-  const {id}=useParams()
+  const { id } = useParams();
   const dispatch = useAppDispatch();
-  const {question,statistics} = useSelector((state:RootState) => state.questions);
-  
+  const { modules, questions, answers } = useSelector((state: RootState) => state.questions);
+  const filteredModules = modules.filter((module) => module.themeId === Number(id));
+  const modulesId = filteredModules.map((module) => module.id);
+  const filteredQuestions = questions.filter((question) => modulesId.includes(question.moduleId));
 
-  useEffect(()=>{
-    dispatch(initQuestion(id));
-  },[])
-
- useEffect(()=>{
-  if(!question){
-    dispatch(savingStatistics(statistics))
-  }
- },[question])
-
+  // useEffect(() => {
+  //   if (!question) {
+  //     dispatch(savingStatistics(statistics));
+  //   }
+  // }, [question]);
 
   return (
     <div>
-      <h2>{question && question.question}</h2>
+      {}
+      {/* <h2>{questions && questions[0].question}</h2> */}
       <div>
-        {question && question.Answers.map(answer=><h3 onClick={()=>dispatch(nextQuestion({...question,status:answer.status}))}>{answer.answer}</h3>)}
+        {filteredQuestions &&
+          filteredQuestions.map((question) => (
+            <div>
+              <h3>{question.question}</h3>
+              {answers.map((answer) => {
+                if (answer.questionId === question.id) {
+                  return <p>{answer.answer}</p>;
+                }
+                return null;
+              })}
+            </div>
+          ))}
       </div>
     </div>
   );

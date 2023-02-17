@@ -13,45 +13,80 @@ function Auth(): JSX.Element {
   const [password2User, setPassword2User] = useState('');
   const dispatch = useAppDispatch();
 
-  const { user } = useSelector((state:RootState) => state.auth);
+  const { user } = useSelector((state: RootState) => state.auth);
 
   if (name === 'logout') {
-   dispatch(logoutUser());
+    dispatch(logoutUser());
   }
-  const auth = (e:React.FormEvent):void => {
+  const auth = (e: React.FormEvent): void => {
     e.preventDefault();
     if (name === 'registration') {
-   dispatch(registrationUser({
-    name: nameUser,
-    email: emailUser,
-    password: passwordUser,
-    password2: password2User, }));
-   }
-   if (name === 'login') {
-      dispatch(loginUser({
-       email: emailUser,
-       password: passwordUser,
-      }));
-      }
+      dispatch(
+        registrationUser({
+          name: nameUser,
+          email: emailUser,
+          password: passwordUser,
+          password2: password2User,
+        })
+      );
+    }
+    if (name === 'login') {
+      dispatch(
+        loginUser({
+          email: emailUser,
+          password: passwordUser,
+        })
+      );
+    }
   };
-  useEffect(()=>{
-if(user){
-  navigate('/')
-}
-  },[user])
+  useEffect(() => {
+    if (user) {
+      navigate('/');
+    }
+  }, [user]);
   return (
     <div>
-     {name === 'registration' && <p>Регистрация</p>}
-     {name === 'login' && <p>Авторизация</p>}
+      {name === 'registration' && <p>Регистрация</p>}
+      {name === 'login' && <p>Авторизация</p>}
       <form onSubmit={auth}>
         <label htmlFor="user">Имя</label>
-        <input id="user" name="username" type="text" required value={nameUser} onChange={(e) => setNameUser(e.target.value)} />
+        <input
+          id="user"
+          name="username"
+          type="text"
+          required
+          value={nameUser}
+          onChange={(e) => setNameUser(e.target.value)}
+        />
         <label htmlFor="email">Email</label>
-        <input id="email" name="email" type="email" required value={emailUser} onChange={(e) => setEmailUser(e.target.value)} />
+        <input
+          id="email"
+          name="email"
+          type="email"
+          required
+          value={emailUser}
+          onChange={(e) => setEmailUser(e.target.value)}
+        />
         <label htmlFor="password">Пароль</label>
-        <input id="password" name="password" type="password" required value={passwordUser} onChange={(e) => setPasswordUser(e.target.value)} />
+        <input
+          id="password"
+          name="password"
+          type="password"
+          required
+          value={passwordUser}
+          onChange={(e) => setPasswordUser(e.target.value)}
+        />
         <label htmlFor="password2">Пароль повторный</label>
-        {name === 'registration' && <input id="password2" name="password2" type="password" required value={password2User} onChange={(e) => setPassword2User(e.target.value)} />}
+        {name === 'registration' && (
+          <input
+            id="password2"
+            name="password2"
+            type="password"
+            required
+            value={password2User}
+            onChange={(e) => setPassword2User(e.target.value)}
+          />
+        )}
         {name === 'registration' && <button type="submit">Зарегистрироваться</button>}
         {name === 'login' && <button type="submit">Авторизаваться</button>}
       </form>
