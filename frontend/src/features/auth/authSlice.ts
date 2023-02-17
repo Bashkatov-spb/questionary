@@ -2,27 +2,23 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import * as api from './api';
 import { AuthState, LoginInput, RegistrationInput } from './types/User';
 
-const initialState:AuthState = {
+const initialState: AuthState = {
   user: undefined,
   error: undefined,
 };
 
-export const registrationUser = createAsyncThunk(
-  'auth/registration',
-  (action:RegistrationInput) => api.postRegistration(action)
+export const registrationUser = createAsyncThunk('auth/registration', (action: RegistrationInput) =>
+  api.postRegistration(action)
 );
-export const loginUser = createAsyncThunk(
-  'auth/login',
-  (action:LoginInput) => api.postLogin(action)
+export const loginUser = createAsyncThunk('auth/login', (action: LoginInput) =>
+  api.postLogin(action)
 );
-export const logoutUser = createAsyncThunk(
-  'auth/logout',
-  () => api.getLogout()
-);
+
 export const checkUser = createAsyncThunk(
   'auth/checkUser',
   () => api.getCheckUser()
 );
+
 const authSlice = createSlice({
   name: 'auth',
   initialState,

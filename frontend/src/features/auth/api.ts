@@ -7,11 +7,11 @@ export async function postRegistration(action:RegistrationInput):Promise<Payload
       'Content-Type': 'application/json',
     },
     credentials: 'include',
-   body: JSON.stringify(action)
+    body: JSON.stringify(action),
   });
-  
+
   return result.json();
- }
+}
 
  export async function postLogin(action:LoginInput):Promise<PayloadAuth> {
   const result = await fetch('http://localhost:4000/api/auth/login', {
@@ -20,10 +20,10 @@ export async function postRegistration(action:RegistrationInput):Promise<Payload
       'Content-Type': 'application/json',
     },
     credentials: 'include',
-   body: JSON.stringify(action)
+    body: JSON.stringify(action),
   });
   return result.json();
- }
+}
 
  export async function getLogout():Promise<PayloadAuth> {
   const result = await fetch('http://localhost:4000/api/auth/logout',{
@@ -31,7 +31,7 @@ export async function postRegistration(action:RegistrationInput):Promise<Payload
     credentials: 'include',
   });
   return result.json();
- }
+}
 
  export async function getCheckUser():Promise<PayloadAuth> {
   const result = await fetch('http://localhost:4000/api/auth/checkUser',{

@@ -1,0 +1,37 @@
+.stat {
+  &__title {
+    text-align: center;
+  }
+  &__container {
+    background-color: greenyellow;
+    height: 600px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+  }
+  &__diagram {
+    background-color: red;
+    height: 250px;
+    width: 250px;
+    border-radius: 50%;
+  }
+  &__modules-container {
+    background-color: wheat;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  &__modules-item {
+    background-color: blue;
+    width: 50px;
+    height: 150px;
+    margin: 10px;
+  }
+  &__modules-item--colb {
+    background-color: #fff;
+  }
+  &__modules-item--stolb {
+    background-color: firebrick;
+  }
+}
